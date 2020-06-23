@@ -17,4 +17,26 @@ Example 2:
 Input: [4,5,6,7,0,1,2]
 Output: 0
 
+O integer
+I sorted array that may have been rorated
+C none
+E not an array, no sorted => return null
+
+  find left and right
+  find middle right + left floor
+
+  ex [2,3,1]
+  -> 1
 */
+
+let findMin = (arr) => {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    let middle = Math.floor((left + right) / 2);
+    if (arr[middle] > arr[right]) left = middle + 1;
+    else right = middle;
+  }
+  return arr[left]
+}
