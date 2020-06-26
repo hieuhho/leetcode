@@ -9,7 +9,6 @@ return 0.
 s = "loveleetcode"
 return 2.
 
-
 Note: You may assume the string contains only lowercase English letters.
 
 O integer of firt uniq indx
@@ -27,16 +26,16 @@ if i in obj = 1
 return i
 */
 
-//Using Map
+// Using Map
 
-let firstUniqChar = (string) => {
-  let map = new Map();
+const firstUniqChar = (string) => {
+  const map = new Map();
 
   for (let i = 0; i < string.length; i += 1) {
     if (map.has(string[i])) {
       map.set(string[i], 2);
     } else {
-      map.set(string[i], 1)
+      map.set(string[i], 1);
     }
   }
   for (let j = 0; j < string.length; j += 1) {
@@ -47,10 +46,9 @@ let firstUniqChar = (string) => {
   return -1;
 };
 
-//Using Object
-let firstUniqChar = (string) => {
-  let occurance = {};
-  let result = -1;
+// Using Object
+const firstUniqCharObj = (string) => {
+  const occurance = {};
   for (let i = 0; i < string.length; i += 1) {
     if (!occurance[string[i]]) {
       occurance[string[i]] = 1;
