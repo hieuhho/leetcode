@@ -42,9 +42,7 @@ const removeCoveredIntervals = (intervals) => {
     const [currentStart, currentEnd] = intervals.pop();
     const [prevStart, prevEnd] = stack[stack.length - 1];
 
-    if (currentStart >= prevStart && currentEnd <= prevEnd) {
-      continue;
-    } else {
+    if (!(currentStart >= prevStart && currentEnd <= prevEnd)) {
       stack.push([currentStart, currentEnd]);
     }
   }
