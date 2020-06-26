@@ -1,0 +1,19 @@
+{
+  "name": "toyproblems",
+  "version": "1.0.0",
+  "description": "## Description ## This is a repository of my daily toy problems.",
+  "main": "1022. Sum of Root to Leaf Binary Numbers.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hieuhho/leetcode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hieuhho/leetcode/issues"
+  },
+  "homepage": "https://github.com/hieuhho/leetcode#readme"
+}
