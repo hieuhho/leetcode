@@ -17,5 +17,5 @@ node 12.16.1
 
 ## Authors
 
-* **LeetCode** - *Initial problem* - [LeetCode](https://leetcode.com/)
+* **LeetCode** - *Initial problems* - [LeetCode](https://leetcode.com/)
 * **Hieu Ho** - *Solves* - [hieuhho](https://github.com/hieuhho)
