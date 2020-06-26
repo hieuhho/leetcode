@@ -32,17 +32,16 @@ E long path
   return answer
 */
 
-let sumRootToLeaf = (root) => {
-  let binaryArray = [];
+const sumRootToLeaf = (root) => {
+  const binaryArray = [];
   let result = 0;
 
-  let binarySearch = (node, binary) => {
+  const binarySearch = (node, binary) => {
     if (!node.left && !node.right) {
       binaryArray.push(binary + node.val);
     } else if (!node.left || !node.right) {
-      if (node.left) binarySearch(node.left, binary + node.val)
-      else
-        binarySearch(node.right, binary + node.val)
+      if (node.left) binarySearch(node.left, binary + node.val);
+      else { binarySearch(node.right, binary + node.val); }
     } else {
       binarySearch(node.left, binary + node.val);
       binarySearch(node.right, binary + node.val);
@@ -51,8 +50,8 @@ let sumRootToLeaf = (root) => {
   binarySearch(root, '');
 
   binaryArray.forEach((binary) => {
-    let parsed = parseInt(binary, 2);
+    const parsed = parseInt(binary, 2);
     result += parsed;
-  })
+  });
   return result;
 };
