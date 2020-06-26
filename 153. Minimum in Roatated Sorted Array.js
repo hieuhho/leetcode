@@ -29,14 +29,14 @@ E not an array, no sorted => return null
   -> 1
 */
 
-let findMin = (arr) => {
+const findMin = (arr) => {
   let left = 0;
   let right = arr.length - 1;
 
   while (left < right) {
-    let middle = Math.floor((left + right) / 2);
+    const middle = Math.floor((left + right) / 2);
     if (arr[middle] > arr[right]) left = middle + 1;
     else right = middle;
   }
-  return arr[left]
-}
+  return arr[left];
+};
