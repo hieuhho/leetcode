@@ -21,4 +21,49 @@ Constraints:
 1 <= preorder.length <= 100
 1 <= preorder[i] <= 10^8
 The values of preorder are distinct.
+
+O array
+I array
+C distint values
+E array of nulls, not integers
+
+[2, 1, 0, null, 3, null, 4]
+            2
+           / \
+          1   3
+         / \ / \
+        0 null  4
+-> [2, 1, 3, 0, null, null, 4]
+
+add node to result
+check node for child
+if child
+add left child to result
+add right child to result
+recurse
 */
+function TreeNode(val, left, right) {
+  this.val = (val === undefined ? 0 : val);
+  this.left = (left === undefined ? null : left);
+  this.right = (right === undefined ? null : right);
+}
+
+const bstFromPreorder = (preorder) => {
+  const root = new TreeNode(preorder[0]);
+
+  for (let i = 1; i < preorder.length; i += 1) {
+    recurse(root, preorder[i]);
+  }
+  return root;
+};
+
+const recurse = (root, val) => {
+  if (val <= root.val) {
+    if (root.left) recurse(root.left, val);
+    else { root.left = new TreeNode(val); }
+  } else if (root.right) recurse(root.right, val);
+  else root.right = new TreeNode(val);
+};
+
+const test = [8, 5, 1, 7, 10, 12];
+console.log(bstFromPreorder(test));
