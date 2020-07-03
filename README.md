@@ -1,7 +1,7 @@
 # LeetCode
 
 ## Description ##
-This is a repository of my daily toy problems.
+This is a repository of my daily leetcode practive problems.
 
 ## Getting Started
 
