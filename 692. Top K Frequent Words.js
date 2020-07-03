@@ -28,7 +28,22 @@ E only 1 freq with k > 1
 -> [a, b] a occurred 2 times, b and c once but b has lower alphabetical
 */
 
+// higher order solve
 const topKFrequent = (words, k) => {
+  const count = words.reduce((a, b) => {
+    a[b] ? a[b]++ : a[b] = 1;
+    return a;
+  }, {});
+  const result = Object.keys(count).sort((a, b) => {
+    if (count[a] > count[b]) return -1;
+    if (count[b] > count[a]) return 1;
+    return a.localeCompare(b);
+  });
+  return result.slice(0, k);
+};
+
+// naive solve
+const topKFrequentNaive = (words, k) => {
   const wordsMap = {};
   words.forEach((word) => {
     wordsMap[word] = wordsMap[word] + 1 || 1;
