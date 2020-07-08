@@ -44,7 +44,7 @@ C see above
 E invalid input, string not in arr -> [[]]
 */
 
-const suggestedProductsSort = (products, searchWord) => {
+const suggestedProducts = (products, searchWord) => {
   products.sort();
   const result = [];
   for (let i = 0; i < searchWord.length; i += 1) {
@@ -56,12 +56,12 @@ const suggestedProductsSort = (products, searchWord) => {
 
 const products1 = ['mobile', 'mouse', 'moneypot', 'monitor', 'mousepad'];
 const searchWord1 = 'mouse';
-console.log(suggestedProductsSort(products1, searchWord1));
+console.log(suggestedProducts(products1, searchWord1));
 
 const products2 = ['havana'];
 const searchWord2 = 'havana';
-console.log(suggestedProductsSort(products2, searchWord2));
+console.log(suggestedProducts(products2, searchWord2));
 
 const products3 = ['bags', 'baggage', 'banner', 'box', 'cloths'];
 const searchWord3 = 'bags';
-console.log(suggestedProductsSort(products3, searchWord3));
+console.log(suggestedProducts(products3, searchWord3));
