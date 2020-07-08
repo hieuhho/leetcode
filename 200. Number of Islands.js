@@ -37,6 +37,34 @@ E char validation
 
 */
 
+// clean solve dfs
+const numIslands = (grid) => {
+  let count = 0;
+
+  const dfs = (row, col) => {
+    if (row < 0 || col < 0 || row === grid.length || col === grid[0].length) return;
+    if (grid[row][col] === '0') return;
+
+    grid[row][col] = '0';
+    dfs(row + 1, col);
+    dfs(row - 1, col);
+    dfs(row, col + 1);
+    dfs(row, col - 1);
+  };
+
+  for (let row = 0; row < grid.length; row += 1) {
+    for (let col = 0; col < grid[0].length; col += 1) {
+      if (grid[row][col] === '1') {
+        count += 1;
+        dfs(row, col);
+      }
+    }
+  }
+  return count;
+};
+
+
+// naive solve
 const numIslands = (grid) => {
   let count = 0;
 
@@ -73,6 +101,7 @@ const numIslands = (grid) => {
   }
   return count;
 };
+
 
 const test1 = [['1', '1', '1', '1', '0'],
   ['1', '1', '0', '1', '0'],
