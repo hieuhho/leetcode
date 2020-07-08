@@ -38,5 +38,50 @@ E char validation
 */
 
 const numIslands = (grid) => {
+  let count = 0;
 
+  function castAway(row, col) {
+    grid[col][row] = 'x';
+    if (col > 0) {
+      if (grid[col - 1][row] === '1') {
+        castAway(row, col - 1);
+      }
+    }
+    if (col < grid.length - 1) {
+      if (grid[col + 1][row] === '1') {
+        castAway(row, col + 1);
+      }
+    }
+    if (row > 0) {
+      if (grid[col][row - 1] === '1') {
+        castAway(row - 1, col);
+      }
+    }
+    if (row < grid[col].length) {
+      if (grid[col][row + 1] === '1') {
+        castAway(row + 1, col);
+      }
+    }
+  }
+  for (let col = 0; col < grid.length; col += 1) {
+    for (let row = 0; row < grid[col].length; row += 1) {
+      if (grid[col][row] === '1') {
+        count += 1;
+        castAway(row, col);
+      }
+    }
+  }
+  return count;
 };
+
+const test1 = [['1', '1', '1', '1', '0'],
+  ['1', '1', '0', '1', '0'],
+  ['1', '1', '0', '0', '0'],
+  ['0', '0', '0', '0', '0']];
+console.log('numIslands: ', numIslands(test1));
+
+const test2 = [['1', '1', '0', '0', '0'],
+  ['1', '1', '0', '0', '0'],
+  ['0', '0', '1', '0', '0'],
+  ['0', '0', '0', '1', '1']];
+console.log('numIslands: ', numIslands(test2));
