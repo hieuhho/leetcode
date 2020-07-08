@@ -37,4 +37,31 @@ There are no repeated elements in products.
 All characters of products[i] are lower-case English letters.
 1 <= searchWord.length <= 1000
 All characters of searchWord are lower-case English letters.
+
+O array of strings, string
+I array of arrays of strings, sub-array length >= 3, main array length = string length
+C see above
+E invalid input, string not in arr -> [[]]
 */
+
+const suggestedProductsSort = (products, searchWord) => {
+  products.sort();
+  const result = [];
+  for (let i = 0; i < searchWord.length; i += 1) {
+    products = products.filter((product) => product[i] === searchWord[i]);
+    result.push(products.slice(0, 3));
+  }
+  return result;
+};
+
+const products1 = ['mobile', 'mouse', 'moneypot', 'monitor', 'mousepad'];
+const searchWord1 = 'mouse';
+console.log(suggestedProductsSort(products1, searchWord1));
+
+const products2 = ['havana'];
+const searchWord2 = 'havana';
+console.log(suggestedProductsSort(products2, searchWord2));
+
+const products3 = ['bags', 'baggage', 'banner', 'box', 'cloths'];
+const searchWord3 = 'bags';
+console.log(suggestedProductsSort(products3, searchWord3));
