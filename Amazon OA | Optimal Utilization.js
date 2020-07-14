@@ -80,3 +80,8 @@ const a = [[1, 8], [2, 7], [3, 14]];
 const b = [[1, 5], [2, 10], [3, 14]];
 const target = 20;
 console.log(optimalPairs(a, b, target));
+
+const a1 = [[1, 8], [2, 15], [3, 9]];
+const b1 = [[1, 8], [2, 11], [3, 12]];
+const target1 = 20;
+console.log(optimalPairs(a1, b1, target1));
