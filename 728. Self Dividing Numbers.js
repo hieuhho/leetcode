@@ -15,3 +15,27 @@ Note:
 
 The boundaries of each input argument are 1 <= left <= right <= 10000.
 */
+const selfDividingNumbers = (left, right) => {
+  const result = [];
+
+  for (let i = left; i <= right; i += 1) {
+    let currentNumber = i;
+    let isTrue = true;
+    while (currentNumber > 1) {
+      const lastDigit = currentNumber % 10;
+      if (!lastDigit || i % lastDigit !== 0) {
+        isTrue = false;
+        break;
+      }
+      currentNumber = Math.floor(currentNumber / 10);
+    }
+    if (isTrue) {
+      result.push(i);
+    }
+  }
+  return result;
+};
+
+const left = 1;
+const right = 22;
+console.log(selfDividingNumbers(left, right));
