@@ -43,3 +43,40 @@ target = 20
 
 Output: [[1, 3], [3, 2]]
 */
+
+const optimalPairs = (inputA, inputB, target) => {
+  inputA.sort((a, b) => a[1] - b[1]);
+  inputB.sort((a, b) => a[1] - b[1]);
+
+  let result = [];
+  let max = -Infinity;
+  let l = 0;
+  let r = inputB.length - 1;
+
+  while (l < inputA.length && r >= 0) {
+    const sum = inputA[l][1] + inputB[r][1];
+    if (sum > target) {
+      r -= 1;
+    } else {
+      if (max <= sum) {
+        if (max < sum) {
+          max = sum;
+          result = [];
+        }
+        result.push([inputA[l][0], inputB[r][0]]);
+        let i = r - 1;
+        while (i >= 0 && inputB[i][1] === inputB[i + 1][1]) {
+          result.push([inputA[l][0], inputB[i][0]]);
+          i -= 1;
+        }
+      }
+      l += 1;
+    }
+  }
+  return result;
+};
+
+const a = [[1, 8], [2, 7], [3, 14]];
+const b = [[1, 5], [2, 10], [3, 14]];
+const target = 20;
+console.log(optimalPairs(a, b, target));
