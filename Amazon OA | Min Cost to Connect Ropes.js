@@ -24,6 +24,23 @@ Input: ropes = [2, 2, 3, 3]
 Output: 20
 */
 
-const minCost = (rope) => {
-
+const minCost = (ropes) => {
+  let cost = 0;
+  while (ropes.length > 1) {
+    ropes = ropes.sort((a, b) => a - b);
+    const ropeA = ropes.shift();
+    const ropeB = ropes.shift();
+    cost += ropeA + ropeB;
+    ropes.push(ropeA + ropeB);
+  }
+  return cost;
 };
+
+const ropes1 = [8, 4, 6, 12];
+console.log('ropes1: ', minCost(ropes1));
+const ropes2 = [20, 4, 8, 2];
+console.log('ropes2: ', minCost(ropes2));
+const ropes3 = [1, 2, 5, 10, 35, 89];
+console.log('ropes3: ', minCost(ropes3));
+const ropes4 = [2, 2, 3, 3];
+console.log('ropes4: ', minCost(ropes4));
