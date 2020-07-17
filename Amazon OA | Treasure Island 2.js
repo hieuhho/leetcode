@@ -18,5 +18,45 @@ You can start from (0,0), (0, 3) or (0, 4). The treasure locations are (2, 4) (3
 */
 
 const shortestPath = (map) => {
+  let steps = 0;
+  const queue = [];
+  const directions = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+  const rows = map.length;
+  const cols = map[0].length;
 
+  for (let i = 0; i < rows; i += 1) {
+    for (let j = 0; j < cols; j += 1) {
+      if (map[i][j] === 'S') queue.push([i, j]);
+    }
+  }
+  console.log('queue: ', queue);
+  while (queue.length !== 0) {
+    steps += 1;
+    const size = queue.length;
+    for (let i = 0; i < size; i += 1) {
+      const [r, c] = queue.shift();
+      for (const [dr, dc] of directions) {
+        const row = r + dr;
+        const col = c + dc;
+        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+          if (map[row][col] === 'X') return steps;
+          if (map[row][col] === 'O') {
+            map[row][col] === 'D';
+            queue.push([row, col]);
+          }
+        }
+      }
+    }
+  }
+  return -1;
 };
+
+const input = [
+  ['S', 'O', 'O', 'S', 'S'],
+  ['D', 'O', 'D', 'O', 'D'],
+  ['O', 'O', 'O', 'O', 'X'],
+  ['X', 'D', 'D', 'O', 'O'],
+  ['X', 'D', 'D', 'D', 'O'],
+];
+
+console.log(shortestPath(input));
