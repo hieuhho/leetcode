@@ -17,8 +17,49 @@ Example 2:
 
 Input: head = [[1,1],[2,1]]
 Output: [[1,1],[2,1]]
+
+Example 3:
+
+Input: head = [[3,null],[3,0],[3,null]]
+Output: [[3,null],[3,0],[3,null]]
+
+Example 4:
+
+Input: head = []
+Output: []
+Explanation: Given linked list is empty (null pointer), so return null.
+
+Constraints:
+
+-10000 <= Node.val <= 10000
+Node.random is null or pointing to a node in the linked list.
+Number of Nodes will not exceed 1000.
 */
 
-const copyRandomList = (head) => {
+function Node(val, next, random) {
+  this.val = val;
+  this.next = next;
+  this.random = random;
+}
 
+const copyRandomList = (head) => {
+  if (!head) return null;
+
+  const copy = new Map();
+  let n = head;
+
+  while (n) {
+    copy.set(n, new Node(n.val));
+    n = n.next;
+  }
+  n = head;
+  while (n) {
+    copy.get(n).next = copy.get(n.next) || null;
+    copy.get(n).random = copy.get(n.random) || null;
+    n = n.next;
+  }
+  return copy.get(head);
 };
+
+const head = [[7, null], [13, 0], [11, 4], [10, 2], [1, 0]];
+console.log(copyRandomList(head));
