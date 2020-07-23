@@ -9,10 +9,12 @@ Given tree s:
    4   5
   / \
  1   2
+
 Given tree t:
    4
   / \
  1   2
+
 Return true, because t has the same structure and node values with a subtree of s.
 
 Example 2:
@@ -31,3 +33,14 @@ Given tree t:
  1   2
 Return false.
 */
+
+const isSubtree = (s, t) => {
+  if (!s) return !t;
+  const dfs = (root1, root2) => {
+    if (!root1 || !root2) return !root1 && !root2;
+    if (root1.val !== root2.val) return false;
+    return dfs(root1.left, root2.left) && dfs(root1.right, root2.right);
+  };
+
+  return dfs(s, t) || isSubtree(s.left, t) || isSubtree(s.right, t);
+};
