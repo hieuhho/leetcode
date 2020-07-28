@@ -28,6 +28,7 @@ Output: {
 Explanation:
 David has 2 Rock, 2 Techno and 1 Jazz song. So he has 2 favorite genres.
 Emma has 2 Pop and 1 Dubstep song. Pop is Emma's favorite genre.
+
 Example 2:
 
 Input:
@@ -43,6 +44,49 @@ Output: {
 }
 */
 
-const favoriteGenre = (songs, genre) => {
+const favoriteGenre = (users, genres) => {
+  const result = {};
+  const songGenres = {};
 
+  for (const genre in genres) {
+    const songs = genres[genre];
+    for (const song of songs) {
+      songGenres[song] = genre;
+    }
+  }
+
+  for (const user in users) {
+    const songs = users[user];
+    const count = {};
+    let maxCount = 0;
+    result[user] = [];
+
+    for (const song of songs) {
+      const genre = songGenres[song];
+      if (genre === null || genre === undefined) break;
+      if (count[genre] === null || count[genre] === undefined) count[genre] = 0;
+      count[genre] += 1;
+      maxCount = Math.max(maxCount, count[genre]);
+    }
+
+    for (const genre in count) {
+      if (count[genre] === maxCount) result[user].push(genre);
+    }
+  }
+  return result;
 };
+
+const userSongs = {
+  David: ['song1', 'song2', 'song3', 'song4', 'song8'],
+  Emma: ['song5', 'song6', 'song7'],
+};
+
+const songGenres = {
+  Rock: ['song1', 'song3'],
+  Dubstep: ['song7'],
+  Techno: ['song2', 'song4'],
+  Pop: ['song5', 'song6'],
+  Jazz: ['song8', 'song9'],
+};
+
+console.log(favoriteGenre(userSongs, songGenres));
