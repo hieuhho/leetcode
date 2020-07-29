@@ -28,5 +28,16 @@ return []
 */
 
 const twoSum = (numbers, target) => {
+  const map = {};
 
+  for (let i = 0; i < numbers.length; i += 1) {
+    const difference = target - numbers[i];
+    if (map[difference] > -1) return [map[difference] + 1, i + 1];
+    map[numbers[i]] = i;
+  }
+  return [];
 };
+
+const numbers = [2, 7, 11, 15];
+const target = 9;
+console.log(twoSum(numbers, target));
