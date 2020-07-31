@@ -24,5 +24,36 @@ Note:
 */
 
 const subarraysWithKDistinct = (array, int) => {
+  const atMost = (num) => {
+    let length = 0;
+    let result = 0;
+    const count = {};
 
+    for (let i = 0; i < array.length; i += 1) {
+      if (!count[array[i]]) count[array[i]] = 0;
+      if (count[array[i]] === 0) num -= 1;
+      count[array[i]] += 1;
+
+      while (num < 0) {
+        count[array[length]] -= 1;
+        if (count[array[length]] === 0) num += 1;
+        length += 1;
+      }
+      result += i - length + 1;
+    }
+    return result;
+  };
+  return atMost(int) - atMost(int - 1);
 };
+
+const a = [1, 2, 1, 2, 3];
+const k = 2;
+console.log(subarraysWithKDistinct(a, k));
+
+const a2 = [1, 2, 1, 3, 4];
+const k2 = 3;
+console.log(subarraysWithKDistinct(a2, k2));
+
+const a3 = [1, 2];
+const k3 = 1;
+console.log(subarraysWithKDistinct(a3, k3));
