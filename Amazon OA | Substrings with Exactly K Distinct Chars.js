@@ -18,5 +18,27 @@ The input string consists of only lowercase English letters [a-z]
 */
 
 const substringsWithKDistinct = (string, k) => {
+  let start = 0;
+  let end = 0;
+  const result = [];
 
+  const { length } = string;
+
+  while (start < length && end < length) {
+    while (end <= length) {
+      if (string.slice(start, end).length > 1) {
+        const newSet = new Set(string.slice(start, end));
+        if (newSet.size === k) result.push(string.slice(start, end));
+      }
+      end += 1;
+    }
+    start += 1;
+    end = start;
+  }
+  return result.length;
 };
+
+const s = 'pqpqs';
+const k = 2;
+
+console.log(substringsWithKDistinct(s, k));
