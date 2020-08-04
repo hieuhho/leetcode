@@ -28,5 +28,27 @@ Words only consist of letters, never apostrophes or other punctuation symbols.
 */
 
 const mostCommonWord = (paragraph, banned) => {
+  const words = paragraph.replace(/\W/g, ' ').toLowerCase().split(' ');
+  const map = {};
+  let result = [0, 'word'];
 
+  words.forEach((word) => {
+    if (!banned.includes(word) && word !== '') {
+      map[word] ? map[word] += 1 : map[word] = 1;
+      if (map[word] > result[0]) result = [map[word], word];
+    }
+  });
+  return result[1];
 };
+
+const paragraph = 'Bob hit a ball, the hit BALL flew far after it was hit.';
+const banned = ['hit'];
+console.log(mostCommonWord(paragraph, banned)); // ball
+
+const p2 = 'Bob. hIt, baLl';
+const b2 = ['bob', 'hit'];
+console.log(mostCommonWord(p2, b2)); // ball
+
+const p3 = 'a, a, a, a, b,b,b,c, c';
+const b3 = ['a'];
+console.log(mostCommonWord(p3, b3)); // b
