@@ -29,5 +29,17 @@ Note:
 */
 
 const kClosest = (points, k) => {
-
+  points.sort((a, b) => (
+    Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2))
+      - Math.sqrt(Math.pow(b[0], 2) + Math.pow(b[1], 2))
+  ));
+  return points.filter((points, inx) => inx < k);
 };
+
+const points = [[1, 3], [-2, 2]];
+const K = 1;
+console.log(kClosest(points, K));
+
+const points2 = [[3, 3], [5, -1], [-2, 4]];
+const K2 = 2;
+console.log(kClosest(points2, K2));
