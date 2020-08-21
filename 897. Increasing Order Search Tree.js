@@ -32,6 +32,28 @@ Output: [1,null,2,null,3,null,4,null,5,null,6,null,7,null,8,null,9]
                 \
                  9
 */
-const increasingBST = (root) => {
 
+function TreeNode(val, left, right) {
+  this.val = (val === undefined ? 0 : val);
+  this.left = (left === undefined ? null : left);
+  this.right = (right === undefined ? null : right);
+}
+
+const increasingBST = (root) => {
+  const tempNode = new TreeNode();
+  let node = tempNode;
+
+  const dfs = (root) => {
+    if (!root) return;
+    dfs(root.left);
+    node.right = root;
+    node = node.right;
+    node.left = null;
+    dfs(root.right);
+  };
+  dfs(root);
+  return tempNode.right;
 };
+
+const test = [5, 3, 6, 2, 4, null, 8, 1, null, null, null, 7, 9];
+console.log(increasingBST(test));
