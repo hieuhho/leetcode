@@ -26,7 +26,76 @@ Input: S = "a2345678999999999999999", K = 1
 Output: "a"
 Explanation:
 The decoded string is "a" repeated 8301530446056247680 times.  The 1st letter is "a".
-*/
-const decodeAtIndex = (S, K) => {
 
+O a string
+I a string, and a number
+C 40 mins
+E input validation, if string has letters
+
+create empty tape string ""
+iterate through string
+if NaN add to tape
+continue
+else if is number
+declare temp string = current tape
+while number >= 1
+add temp tape to current tape
+subtract 1 from number
+
+return k in final tape.
+*/
+const decodeAtIndex2 = (S, K) => {
+  let tape = '';
+  for (let i = 0; i < S.length; i += 1) {
+    const letter = S[i];
+    if (tape.length > K) break;
+    if (isNaN(letter)) {
+      tape = tape.concat(letter);
+    } else if (!isNaN(letter)) {
+      tape += tape.repeat(letter - 1);
+    }
+  }
+  return tape[K - 1];
 };
+
+const decodeAtIndex = (S, K) => {
+  let length = 0;
+  let i = 0;
+
+  while (length < K - 1) {
+    if (isNaN(S[i])) {
+      length += 1;
+    } else {
+      const n = length * (parseInt(S[i]) - 1);
+      if (length + n >= K) {
+        if ((K - length) % length === 0) {
+          let j;
+          for (j = i - 1; j >= 0; j -= 1) {
+            if (isNaN(S[j])) break;
+          }
+          return S[j];
+        } if ((K - length) % length === 1) {
+          return S[0];
+        }
+        return decodeAtIndex(S, (K - length) % length);
+      }
+      length += n;
+    }
+    i += 1;
+  }
+
+  if (isNaN(S[i])) return S[i];
+  return S[0];
+};
+
+const S = 'leet2code3';
+const K = 10;
+console.log(decodeAtIndex(S, K));
+
+const S2 = 'a2345678999999999999999';
+const K2 = 1;
+console.log(decodeAtIndex(S2, K2));
+
+const S3 = 'y959q969u3hb22odq595';
+const K3 = 222280369;
+console.log(decodeAtIndex(S2, K2));
