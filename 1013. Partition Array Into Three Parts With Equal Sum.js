@@ -27,5 +27,33 @@ Constraints:
 */
 
 const canThreePartsEqualSum = (A) => {
+  const sum = A.reduce((total, x) => total + x);
+  if (sum % 3) return false;
 
+  const avg = sum / 3;
+  let current = 0;
+  let count = 0;
+
+  for (const a of A) {
+    current += a;
+    if (current === avg) {
+      count++;
+      current = 0;
+    }
+    if (count >= 3) return true;
+  }
+  return false;
 };
+const test1 = [0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1];
+console.log(canThreePartsEqualSum(test1));
+
+const test2 = [0, 2, 1, -6, 6, 7, 9, -1, 2, 0, 1];
+console.log(canThreePartsEqualSum(test2));
+
+const test3 = [3, 3, 6, 5, -2, 2, 5, 1, -9, 4];
+console.log(canThreePartsEqualSum(test3));
+
+console.log(canThreePartsEqualSum([1, -1, 1, -1]));
+console.log(canThreePartsEqualSum([18, 12, -18, 18, -19, -1, 10, 10]));
+console.log(canThreePartsEqualSum([0, 0, 0, 0]));
+console.log(canThreePartsEqualSum([10, -10, 10, -10, 10, -10, 10, -10]));
