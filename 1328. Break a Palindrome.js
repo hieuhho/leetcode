@@ -20,5 +20,17 @@ palindrome consists of only lowercase English letters.
 */
 
 const breakPalindrome = (palindrome) => {
-
+  if (palindrome.length === 1) return '';
+  let temp = 0;
+  for (let i = 0; i < (palindrome.length / 2 | 0); i += 1) {
+    if (palindrome[i] !== 'a') {
+      temp = i;
+      break;
+    }
+  }
+  if (temp === 0 && palindrome[temp] === 'a') temp = palindrome.length - 1;
+  return `${palindrome.substring(0, temp)}${palindrome[temp] === 'a' ? 'b' : 'a'}${palindrome.substring(temp + 1)}`;
 };
+
+const test = 'abccba';
+console.log(breakPalindrome(test));
