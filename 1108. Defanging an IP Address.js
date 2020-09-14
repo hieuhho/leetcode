@@ -18,5 +18,12 @@ The given address is a valid IPv4 address.
 */
 
 const defangIPaddr = (ip) => {
-
+  const result = ip.split('.').join('[.]');
+  return result;
 };
+
+const test1 = '1.1.1.1';
+const test2 = '255.100.50.0';
+
+console.log(defangIPaddr(test1));
+console.log(defangIPaddr(test2));
