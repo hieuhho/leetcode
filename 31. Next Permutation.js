@@ -13,5 +13,39 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 */
 
 const nextPermutation = (nums) => {
+  const swap = (a, b) => {
+    [nums[a], nums[b]] = [nums[b], nums[a]];
+  };
 
+  const reverse = (start) => {
+    let end = nums.length - 1;
+    while (start < end) {
+      swap(start, end);
+      start += 1;
+      end -= 1;
+    }
+  };
+
+  const permutation = (inx) => {
+    for (let i = nums.length - 1; i > inx; i -= 1) {
+      if (nums[i] > nums[inx]) return i;
+    }
+  };
+
+  for (let i = nums.length - 1; i >= 0; i -= 1) {
+    if (nums[i] < nums[i + 1]) {
+      const next = permutation(i);
+      swap(i, next);
+      reverse(i + 1);
+      return nums;
+    }
+  }
+  return nums.reverse();
 };
+
+const test = [1, 2, 3];
+const test2 = [3, 2, 1];
+const test3 = [1, 1, 5];
+console.log(nextPermutation(test));
+console.log(nextPermutation(test2));
+console.log(nextPermutation(test3));
