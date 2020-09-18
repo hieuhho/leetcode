@@ -16,5 +16,24 @@ The length of words[i] will be in the range of [1, 50].
 */
 
 const numMatchingSubseq = (s, words) => {
+  let count = 0;
 
+  for (const w of words) {
+    let i = 0;
+    let j = 0;
+    while (j < w.length && i < s.length) {
+      if (w[j] === s[i]) {
+        j += 1;
+        i += 1;
+      } else {
+        i += 1;
+      }
+    }
+    if (j === w.length) count += 1;
+  }
+  return count;
 };
+
+const s = 'abcde';
+const words = ['a', 'bb', 'acd', 'ace'];
+console.log(numMatchingSubseq(s, words));
