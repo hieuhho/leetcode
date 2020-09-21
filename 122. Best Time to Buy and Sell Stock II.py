@@ -37,4 +37,8 @@ def maxProfit(prices):
   return profit
 
 test1 = [7,1,5,3,6,4]
+test2 = [1,2,3,4,5]
+test3 = [7,6,4,3,1]
 print(maxProfit(test1))
+print(maxProfit(test2))
+print(maxProfit(test3))
