@@ -31,9 +31,7 @@ k >= 0
 
 */
 const rotate = (nums, k) => {
-  while (k--) {
-    nums.unshift(nums.pop());
-  }
+  nums.unshift(...nums.splice(nums.length - k % nums.length));
 };
 
 const test1 = [1, 2, 3, 4, 5, 6, 7];
