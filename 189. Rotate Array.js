@@ -31,5 +31,15 @@ k >= 0
 
 */
 const rotate = (nums, k) => {
-
+  while (k--) {
+    nums.unshift(nums.pop());
+  }
 };
+
+const test1 = [1, 2, 3, 4, 5, 6, 7];
+const k1 = 3;
+console.log(rotate(test1, k1));
+
+const test2 = [-1, -100, 3, 99];
+const k2 = 2;
+console.log(rotate(test2, k2));
