@@ -14,3 +14,9 @@
 # Output: 4
 
 def singleNumber(nums):
+  return reduce(lambda a, b: a ^ b, nums)
+
+test1 = [2,2,1]
+test2 = [4,1,2,1,2]
+print(singleNumber(test1))
+print(singleNumber(test2))
