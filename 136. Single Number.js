@@ -15,5 +15,14 @@ Input: [4,1,2,1,2]
 Output: 4
 */
 const singleNumber = (nums) => {
-
+  const sorted = nums.sort();
+  for (let i = 0; i < nums.length; i += 2) {
+    if (nums[i] !== nums[i + 1]) return nums[i];
+  }
+  return null;
 };
+
+const test1 = [2, 2, 1];
+const test2 = [4, 1, 2, 1, 2];
+console.log(singleNumber(test1));
+console.log(singleNumber(test2));
