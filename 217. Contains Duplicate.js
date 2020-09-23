@@ -16,6 +16,11 @@ Example 3:
 Input: [1,1,1,3,3,4,3,2,4,2]
 Output: true
 */
-const containsDuplicate = (nums) => {
+const containsDuplicate = (nums) => new Set(nums).size !== nums.length;
 
-};
+const test1 = [1, 2, 3, 1];
+const test2 = [1, 2, 3, 4];
+const test3 = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2];
+console.log(containsDuplicate(test1));
+console.log(containsDuplicate(test2));
+console.log(containsDuplicate(test3));
