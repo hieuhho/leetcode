@@ -16,3 +16,11 @@
 # Output: true
 
 def containsDuplicate(nums):
+  return len(nums) != len(set(nums))
+
+test1 = [1, 2, 3, 1];
+test2 = [1, 2, 3, 4];
+test3 = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2];
+print(containsDuplicate(test1))
+print(containsDuplicate(test2))
+print(containsDuplicate(test3))
