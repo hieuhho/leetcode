@@ -40,5 +40,7 @@ const plusOne = (digits) => {
 
 const test1 = [1, 2, 3];
 const test2 = [4, 3, 2, 1];
+const test3 = [0];
 console.log(plusOne(test1));
 console.log(plusOne(test2));
+console.log(plusOne(test3));
