@@ -20,6 +20,24 @@ What if nums1's size is small compared to nums2's size? Which algorithm is bette
 What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
 */
 
-const intersect = (num1, num2) => {
-
+const intersect = (nums1, nums2) => {
+  const map = nums1.reduce((num, n) => {
+    num[n] = (num[n] + 1 || 1);
+    return num;
+  }, {});
+  return nums2.filter((n) => {
+    if (map[n]) {
+      map[n] -= 1;
+      return true;
+    }
+    return false;
+  });
 };
+
+const test1a = [1, 2, 2, 1];
+const test1b = [2, 2];
+console.log(intersect(test1a, test1b));
+
+const test2a = [4, 9, 5];
+const test2b = [9, 4, 9, 8, 4];
+console.log(intersect(test2a, test2b));
