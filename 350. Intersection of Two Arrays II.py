@@ -19,3 +19,22 @@
 # What if elements of nums2 are stored on disk, and the memory is limited such that you cannot load all elements into the memory at once?
 
 def intersect(nums1, nums2):
+  count = {}
+  result = []
+  for num in nums1:
+    count[num] = count.get(num, 0) + 1
+
+  for num in nums2:
+    if num in count and count[num] > 0:
+      result.append(num)
+      count[num] -= 1
+  return result
+
+
+nums1 = [1,2,2,1]
+nums2 = [2,2]
+print(intersect(nums1, nums2))
+
+nums3 = [4,9,5]
+nums4 = [9,4,9,8,4]
+print(intersect(nums3, nums4))
