@@ -27,6 +27,16 @@
 # 1 <= digits.length <= 100
 # 0 <= digits[i] <= 9
 def plusOne(digits):
+  for i in range(len(digits) -1, -1, -1):
+    if digits[i] < 9:
+      digits[i] += 1
+      return digits
+    digits[i] = 0
+  return [1] + digits
 
 test1 = [1,2,3]
-print(plusOne(self, test1))
+test2 = [4,3,2,1]
+test3 = [0]
+print(plusOne(test1))
+print(plusOne(test2))
+print(plusOne(test3))
