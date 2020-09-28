@@ -10,6 +10,15 @@ Note:
 You must do this in-place without making a copy of the array.
 Minimize the total number of operations.
 */
-const moveZeros = (nums) => {
-
+const moveZeroes = (nums) => {
+  let count = 0;
+  for (let i = 0; i < nums.length; i += 1) {
+    if (nums[i] !== 0) {
+      [nums[count], nums[i]] = [nums[i], nums[count]];
+      count += 1;
+    }
+  }
 };
+
+const test1 = [0, 1, 0, 3, 12];
+console.log(moveZeroes(test1));
