@@ -32,5 +32,20 @@ n == nums.length
 All the numbers of nums are unique.
 */
 const missingNumber = (nums) => {
-
+  const arr = new Array(nums.length + 1).fill(-1);
+  for (const num of nums) {
+    arr[num] = num;
+  }
+  return arr.indexOf(-1);
 };
+
+const test1 = [3, 0, 1];
+const test2 = [0, 1];
+const test3 = [9, 6, 4, 2, 3, 5, 7, 0, 1];
+const test4 = [0];
+const test5 = [1];
+console.log(missingNumber(test1));
+console.log(missingNumber(test2));
+console.log(missingNumber(test3));
+console.log(missingNumber(test4));
+console.log(missingNumber(test5));
