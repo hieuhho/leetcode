@@ -17,3 +17,22 @@
 # intervals[i][0] <= intervals[i][1]
 
 def merge(intervals):
+  if not intervals: return []
+  result = []
+  intervals = sorted(intervals, key = lambda x : x[0])
+  for current in intervals:
+    if not result or result[-1][1] < current[0]:
+      result.append(current)
+    else:
+      result[-1][1] = max(result[-1][1], current[1])
+
+  return result
+
+test1 = [[1,3],[2,6],[8,10],[15,18]]
+test2 = [[1, 4], [4, 5]];
+test3 = [[1, 2], [4, 6], [3, 5]]
+test4 = [[1,4],[0,4]]
+print(merge(test1))
+print(merge(test2))
+print(merge(test3))
+print(merge(test4))
