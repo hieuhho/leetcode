@@ -31,5 +31,28 @@ Constraints:
 -231 <= nums[i] <= 231 - 1
 */
 const maxSubArray = (nums) => {
-
+  if (nums.length === 1) return nums[0];
+  let result = Number.MIN_SAFE_INTEGER;
+  let currentSum = 0;
+  const { length } = nums;
+  for (let i = 0; i < length; i += 1) {
+    currentSum += nums[i];
+    if (currentSum > result) result = currentSum;
+    if (currentSum < 0) currentSum = 0;
+  }
+  return result;
 };
+
+const test1 = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+const test2 = [1];
+const test3 = [0];
+const test4 = [-1];
+const test5 = [-2147483647];
+const test6 = [-2, -1];
+
+console.log(maxSubArray(test1));
+console.log(maxSubArray(test2));
+console.log(maxSubArray(test3));
+console.log(maxSubArray(test4));
+console.log(maxSubArray(test5));
+console.log(maxSubArray(test6));
