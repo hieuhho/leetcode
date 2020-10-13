@@ -18,5 +18,16 @@ Output: 0
 Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
 const maxProfit = (prices) => {
-
+  let current = 0;
+  let profit = 0;
+  for (let i = 1; i < prices.length; i += 1) {
+    current = Math.max(0, current += prices[i] - prices[i - 1]);
+    profit = Math.max(current, profit);
+  }
+  return profit;
 };
+
+const test1 = [7, 1, 5, 3, 6, 4];
+const test2 = [7, 6, 4, 3, 1];
+console.log(maxProfit(test1));
+console.log(maxProfit(test2));
