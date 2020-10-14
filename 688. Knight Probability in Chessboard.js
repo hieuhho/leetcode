@@ -23,5 +23,33 @@ The knight always initially starts on the board.
 */
 
 const knightProbability = (N, K, r, c) => {
+  const dirs = [
+    [-2, -1], [-1, -2], // up left
+    [1, -2], [2, -1], // up right
+    [2, 1], [1, 2], // down right
+    [-1, 2], [-2, 1]]; // down left
+  const arr = [...Array(K + 1)].map(() => [...Array(N)].map(() => Array(N).fill(0)));
 
+  arr[0][r][c] = 1;
+  for (let k = 1; k <= K; k += 1) {
+    for (let i = 0; i < N; i += 1) {
+      for (let j = 0; j < N; j += 1) {
+        for (const [dx, dy] of dirs) {
+          const x = i + dx;
+          const y = j + dy;
+          if (x >= 0 && x < N && y >= 0 && y < N) {
+            arr[k][i][j] += arr[k - 1][x][y] / 8;
+          }
+        }
+      }
+    }
+  }
+  let res = 0;
+  for (let i = 0; i < N; i += 1) {
+    for (let j = 0; j < N; j += 1) {
+      res += arr[K][i][j];
+    }
+  }
+  return res;
 };
+console.log(knightProbability(3, 2, 0, 0));
