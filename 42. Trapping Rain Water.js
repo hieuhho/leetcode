@@ -19,5 +19,28 @@ n == height.length
 */
 
 const trap = (height) => {
+  if (!height.length) return 0;
 
+  let result = 0;
+  const leftHeight = {};
+  const rightHeight = {};
+  const len = height.length;
+
+  leftHeight[0] = height[0];
+  for (let i = 1; i < len; i += 1) {
+    leftHeight[i] = Math.max(height[i], leftHeight[i - 1]);
+  }
+  rightHeight[len - 1] = height[len - 1];
+  for (let i = len - 2; i >= 0; i -= 1) {
+    rightHeight[i] = Math.max(height[i], rightHeight[i + 1]);
+  }
+  for (let i = 0; i < len; i += 1) {
+    result += Math.min(leftHeight[i], rightHeight[i]) - height[i];
+  }
+  return result;
 };
+
+const test1 = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1];
+const test2 = [4, 2, 0, 3, 2, 5];
+console.log(trap(test1));
+console.log(trap(test2));
