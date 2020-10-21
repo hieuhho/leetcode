@@ -16,6 +16,16 @@ Given the below binary tree and sum = 22,
 7    2      1
 return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
 */
-const hasPathSum = (root, sum) => {
 
+const TreeNode = (val, left, right) => {
+  this.val = (val === undefined ? 0 : val);
+  this.left = (left === undefined ? null : left);
+  this.right = (right === undefined ? null : right);
+};
+
+const hasPathSum = (root, sum) => {
+  if (!root) return false;
+  if (!root.left && !root.right) return root.val === sum;
+  const remain = sum - root.val;
+  return hasPathSum(root.left, remain) || hasPathSum(root.right, remain);
 };
