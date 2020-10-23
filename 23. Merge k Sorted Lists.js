@@ -33,6 +33,7 @@ k == lists.length
 lists[i] is sorted in ascending order.
 The sum of lists[i].length won't exceed 10^4.
 */
+//naive solve
 const mergeKLists = (lists) => {
   const merge2Lists = (l1, l2) => {
     if (!l1 || !l2) return l1 || l2;
@@ -57,4 +58,26 @@ const mergeKLists = (lists) => {
     root = merge2Lists(root, lists[i]);
   }
   return root || null;
+};
+
+//faster solve
+const mergeKLists = (lists) => {
+  if (!lists || !lists.length) return [];
+  const arr = [];
+  const result = new ListNode(-99);
+
+  lists.forEach((list) => {
+    let value = list;
+    while (value) {
+      arr.push(value.val);
+      value = value.next;
+    }
+  });
+  let sort = result;
+  arr.sort((a, b) => a - b).forEach((int) => {
+    const tempNode = new ListNode(int);
+    sort.next = tempNode;
+    sort = sort.next;
+  });
+  return result;
 };
