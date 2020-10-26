@@ -39,3 +39,6 @@ const getDecimalValue = (head) => {
   }
   return num;
 };
+
+const test1 = head = [1, 0, 1];
+console.log(getDecimalValue(head));
