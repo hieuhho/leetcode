@@ -9,6 +9,14 @@ Follow up:
 
 A linked list can be reversed either iteratively or recursively. Could you implement both?
 */
+// iteratively
 const reverseList = (head) => {
-
+  const prev = null;
+  while (head) {
+    const { next } = head;
+    head.next = prev;
+    prev = head;
+    head = next;
+  }
+  return prev;
 };
