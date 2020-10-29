@@ -51,7 +51,7 @@ const dfs = (row, col, rows, cols, grid) => {
   return false;
 };
 
-const closedIslands = (grid) => {
+const closedIsland = (grid) => {
   const rows = grid.length;
   const cols = grid[0].length;
 
@@ -68,10 +68,10 @@ const closedIslands = (grid) => {
 };
 
 const test1 = [[1, 1, 1, 1, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 1, 0], [1, 0, 1, 0, 1, 1, 1, 0], [1, 0, 0, 0, 0, 1, 0, 1], [1, 1, 1, 1, 1, 1, 1, 0]];
-console.log(closedIslands(test1));
+console.log(closedIsland(test1));
 
 const test2 = [[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]];
-console.log(closedIslands(test2));
+console.log(closedIsland(test2));
 
 const test3 = [[1, 1, 1, 1, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 1],
@@ -80,4 +80,4 @@ const test3 = [[1, 1, 1, 1, 1, 1, 1],
   [1, 0, 1, 1, 1, 0, 1],
   [1, 0, 0, 0, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1]];
-console.log(closedIslands(test3));
+console.log(closedIsland(test3));
