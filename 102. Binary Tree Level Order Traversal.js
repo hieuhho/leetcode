@@ -26,25 +26,19 @@ function TreeNode(val, left, right) {
 const levelOrder = (root) => {
   if (!root) return [];
 
-  const stack = [];
+  const queue = [root];
   const result = [];
 
-  stack.push(root);
-
-  while (stack.length > 0) {
-    const size = stack.length;
-    const temp = [];
-
-    for (let i = 0; i < size; i += 1) {
-      const node = stack.shift();
-      temp.push(node.val);
-      if (node.left) stack.push(node.left);
-      if (node.right) stack.push(node.right);
+  while (queue.length !== 0) {
+    const len = queue.length;
+    const currLevel = [];
+    for (let i = 0; i < len; i += 1) {
+      const node = queue.shift();
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+      currLevel.push(node.val);
     }
-    result.push(temp);
+    result.push(currLevel);
   }
   return result;
 };
-
-const test = [3, 9, 20, null, null, 15, 7];
-console.log(levelOrder(test));
