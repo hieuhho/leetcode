@@ -16,6 +16,24 @@ return its zigzag level order traversal as:
 ]
 */
 
+// BFS
 const zigzagLevelOrder = (root) => {
-
+  if (!root) return [];
+  const queue = [root];
+  const result = [];
+  let depth = 0;
+  while (queue.length !== 0) {
+    const len = queue.length;
+    const currLevel = [];
+    for (let i = 0; i < len; i += 1) {
+      const currNode = queue.shift();
+      if (depth % 2 === 0) currLevel.push(currNode.val);
+      else currLevel.unshift(currNode.val);
+      if (currNode.left) queue.push(currNode.left);
+      if (currNode.right) queue.push(currNode.right);
+    }
+    result.push(currLevel);
+    depth += 1;
+  }
+  return result;
 };
