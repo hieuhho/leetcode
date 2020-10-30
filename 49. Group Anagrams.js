@@ -22,6 +22,16 @@ Constraints:
 0 <= strs[i].length <= 100
 strs[i] consists of lower-case English letters.
 */
+// O(NlogK)
 const groupAnagrams = (strs) => {
-
+  const map = {};
+  for (const str of strs) {
+    const key = [...str].sort();
+    if (!map[key]) map[key] = [];
+    map[key].push(str);
+  }
+  return Object.values(map);
 };
+
+const test1 = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'];
+console.log(groupAnagrams(test1));
