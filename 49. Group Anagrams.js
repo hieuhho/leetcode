@@ -23,7 +23,7 @@ Constraints:
 strs[i] consists of lower-case English letters.
 */
 // O(NlogK)
-const groupAnagrams = (strs) => {
+const groupAnagrams1 = (strs) => {
   const map = {};
   for (const str of strs) {
     const key = [...str].sort();
@@ -33,5 +33,18 @@ const groupAnagrams = (strs) => {
   return Object.values(map);
 };
 
+// O(KN)
+const groupAnagrams = (strs) => {
+  const res = {};
+  for (const str of strs) {
+    const count = new Array(26).fill(0);
+    for (const char of str) count[char.charCodeAt() - 97]++;
+    const key = count.join();
+    res[key] ? res[key].push(str) : res[key] = [str];
+  }
+  return Object.values(res);
+};
+
 const test1 = ['eat', 'tea', 'tan', 'ate', 'nat', 'bat'];
+// console.log(groupAnagrams(test1));
 console.log(groupAnagrams(test1));
